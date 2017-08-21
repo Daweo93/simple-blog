@@ -1,8 +1,10 @@
-import { createStore } from 'redux'
-import rootReducer from './reducers'
+import { applyMiddleware, createStore } from 'redux';
+import rootReducer from './reducers';
+import ReduxPromise from 'redux-promise';
 
 const configureStore = () => {
-  const store = createStore(
+  const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+  const store = createStoreWithMiddleware(
     rootReducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
@@ -13,11 +15,11 @@ const configureStore = () => {
           rootReducer,
           window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
         );
-      })
+      });
     }
   }
 
-  return store
-}
+  return store;
+};
 
-export default configureStore
+export default configureStore;
