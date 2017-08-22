@@ -24,7 +24,7 @@ class PostsIndex extends Component {
       <div className="col-sm-12 mt-4">
         <div className="row mb-4">
           <div className="col-sm-6">
-            <h1 className="mb-0">Posts</h1>
+            <h2 className="mb-0">Posts</h2>
           </div>
           <div className="col-sm-6 justify-content-end d-flex">
             <Link to="/posts/new" className="btn btn-primary"> Add Post</Link>
@@ -34,7 +34,7 @@ class PostsIndex extends Component {
           {this.renderPosts()}
         </ul>
       </div>
-    )
+    );
   }
 }
 
