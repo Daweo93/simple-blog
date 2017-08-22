@@ -1,12 +1,13 @@
 import axios from 'axios';
 
 export const FETCH_POSTS = 'fetch_posts';
+export const FETCH_POST = 'fetch_post';
 export const CREATE_POSTS = 'create_posts';
 
 const API_URL = 'http://reduxblog.herokuapp.com/api';
 const API_KEY = 'dawcio';
 
-export function fetchPosts () {
+export function fetchPosts() {
   const request = axios.get(`${API_URL}/posts`, {
     params: {
       key: API_KEY
@@ -19,12 +20,25 @@ export function fetchPosts () {
   }
 }
 
-export function createPost (values, callback) {
+export function createPost(values, callback) {
   const request = axios.post(`${API_URL}/posts?key=${API_KEY}`, values)
     .then(() => callback());
 
   return {
     type: CREATE_POSTS,
+    payload: request
+  }
+}
+
+export function fetchPost(id) {
+  const request = axios.get(`${API_URL}/posts/${id}`, {
+    params: {
+      key: API_KEY
+    }
+  });
+
+  return {
+    type: FETCH_POST,
     payload: request
   }
 }
